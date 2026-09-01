@@ -242,7 +242,7 @@ sub make_book_pages {
     $self->make_page(
       'book.html.tt', {
         feature   => $feature,
-        books     => $self->books,
+        books     => [ grep { $_->id != $feature->id } @{$self->books} ],
         canonical => $self->canonical_url . 'books/' . $feature->slug . '/',
         amazon_sites => $self->amazon_sites,
       },

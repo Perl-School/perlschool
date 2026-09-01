@@ -88,6 +88,9 @@
 [%   END -%]
           </div>
 [% END -%]
+[% IF feature.website -%]
+    <a class="btn btn-primary" target="_blank" href="[% feature.website %]">Website</a>
+[% END -%]
 
     <h2 class="section-title mt-3">Buy</h2>
     <div class="action-row">

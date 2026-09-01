@@ -144,6 +144,12 @@ __PACKAGE__->table("book");
   is_nullable: 1
   size: 15
 
+=head2 website
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 100
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -185,6 +191,8 @@ __PACKAGE__->add_columns(
   { data_type => "boolean", default_value => 0, is_nullable => 0 },
   "isbn",
   { data_type => "char", is_nullable => 1, size => 15 },
+  "website",
+  { data_type => "varchar", is_nullable => 1, size => 100 },
 );
 
 =head1 PRIMARY KEY
@@ -237,8 +245,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07053 @ 2026-07-07 18:14:56
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:eQgXL1l6akaQm6eo+XN8dA
+# Created by DBIx::Class::Schema::Loader v0.07053 @ 2026-09-01 15:27:43
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:k7pSuk5ZwCIijcowmxmAIQ
 
 use Moo;
 with 'MooX::Role::JSON_LD';
