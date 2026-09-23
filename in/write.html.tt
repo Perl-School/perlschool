@@ -5,7 +5,7 @@
 
           <div class="hero mb-4">
             <p class="lead">
-              Short, practical ebooks about modern Perl. If you have a sharp
+              Practical books about modern Perl. If you have a sharp
               idea and examples from real projects, we’d like to hear from you.
             </p>
             <div class="action-row">
@@ -30,7 +30,7 @@
             <li>Modern Perl: current syntax, proven CPAN modules, and
               production-tested techniques.</li>
             <li>Hands-on examples and small, runnable code snippets.</li>
-            <li>Focused scope (short books that respect the reader’s time).</li>
+            <li>Focused scope (books that respect the reader’s time).</li>
           </ul>
 
           <h2 class="section-title">Submission Guidelines:</h2>
