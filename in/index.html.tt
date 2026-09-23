@@ -12,7 +12,11 @@
       </div>
       <div class="row">
         <div class="col-md-7">
+[% IF feature.is_published -%]
           <h2 class="section-title">Latest Release</h2>
+[% ELSE -%]
+          <h2 class="section-title">Coming Soon</h2>
+[% END -%]
         </div>
       </div>
       <div class="row hero align-items-center">

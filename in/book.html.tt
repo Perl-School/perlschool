@@ -88,11 +88,11 @@
 [%   END -%]
           </div>
 [% END -%]
-[% IF feature.website -%]
-    <a class="btn btn-primary" target="_blank" href="[% feature.website %]">Website</a>
-[% END -%]
 
-    <h2 class="section-title mt-3">Buy</h2>
+    <h2 class="section-title mt-3">Read it now</h2>
+[%   IF feature.buy_blurb -%]
+    <p>[% buy.blurb %]</p>
+[%   END -%]
     <div class="action-row">
 [%   IF feature.leanpub_slug -%]
       <a class="btn btn-primary" href="https://leanpub.com/[% feature.leanpub_slug %]">Buy on Leanpub</a>
@@ -105,6 +105,13 @@
       ></a>
 [%   END -%]
     </div>
+[%   IF feature.kit_list -%]
+    <script async data-uid="caf9a316cf" src="https://perl-school.kit.com/[% feature.kit_list %]/index.js"></script>
+[%   END -%]
+
+[% IF feature.website -%]
+    <a class="btn btn-primary" target="_blank" href="[% feature.website %]">Website</a>
+[% END -%]
 
   </div>
 </div>
