@@ -1,13 +1,14 @@
 [% PROCESS util.tt -%]
       <div class="row">
         <div class="col-md-12">
-          <h1>Welcome to Perl School</h1>
-          <p>Perl School publishes clear, practical ebooks for modern Perl
-            programmers. Our goal is to help you write better Perl, faster —
-            with up‑to‑date examples, real‑world techniques, and guidance from
-            authors who use Perl every day. Whether you’re starting out or
-            refreshing your skills, you’ll find books you can actually apply
-            to your work.</p>
+          <h1>New Perl books are still worth publishing.</h1>
+          <p>Traditional technical publishers have largely moved away from Perl.
+            We haven't.</p>
+
+          <p>Perl School is an independent publisher specialising in books for
+            the Perl community. We publish practical books by experienced Perl
+            developers—from broad introductions to highly specialised
+            subjects—in ebook and paperback editions.</p>
         </div>
       </div>
       <div class="row">

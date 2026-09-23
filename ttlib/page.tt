@@ -183,6 +183,10 @@
     </div>
     <!-- /.row -->
 
+[% IF template.name != 'book.html.tt' OR NOT feature.kit_list -%]
+<script async data-uid="bb976ccac0" src="https://perl-school.kit.com/bb976ccac0/index.js"></script>
+[% END -%]
+
   </div>
   <!-- /.container -->
 

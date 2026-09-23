@@ -91,7 +91,7 @@
 
     <h2 class="section-title mt-3">Read it now</h2>
 [%   IF feature.buy_blurb -%]
-    <p>[% buy.blurb %]</p>
+    <p>[% feature.buy_blurb %]</p>
 [%   END -%]
     <div class="action-row">
 [%   IF feature.leanpub_slug -%]
@@ -110,6 +110,7 @@
 [%   END -%]
 
 [% IF feature.website -%]
+    <h2 class="section-title mt-3">Website</h2>
     <a class="btn btn-primary" target="_blank" href="[% feature.website %]">Website</a>
 [% END -%]
 
