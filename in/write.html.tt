@@ -5,48 +5,150 @@
 
           <div class="hero mb-4">
             <p class="lead">
-              Practical books about modern Perl. If you have a sharp
-              idea and examples from real projects, we’d like to hear from you.
+              Know something about Perl that deserves a book? We'd like to
+              help you publish it.
+            </p>
+            <p>
+              Perl School is an independent publisher specialising in books
+              for the Perl community. We publish practical books by people
+              who know their subjects, in ebook and paperback editions.
             </p>
             <div class="action-row">
-              <a class="btn btn-primary" href="mailto:hello@perlschool.com?subject=Pitch%3A%20Your%20idea">Send a pitch</a>
-              <a class="btn btn-outline-primary" href="/books/">See recent titles</a>
+              <a class="btn btn-primary"
+                 href="mailto:hello@perlschool.com?subject=Book%20idea">
+                Tell us your idea
+              </a>
+              <a class="btn btn-outline-primary" href="/books/">
+                See our books
+              </a>
             </div>
           </div>
 
+          <h2 class="section-title">No subject is too niche</h2>
 
-          <h2 class="section-title">Why Write for Perl School?</h2>
+          <p>
+            Large technical publishers need books with large potential
+            audiences. We don't.
+          </p>
+
+          <p>
+            Perl School was created partly because worthwhile Perl books were
+            becoming difficult to publish through traditional technical
+            publishers. Our lightweight publishing model means a book
+            doesn't need to sell thousands of copies to be worth publishing.
+          </p>
+
+          <p>
+            So don't worry that your idea is too specialised. If there's a
+            group of Perl developers who would benefit from a good book about
+            your subject, we're interested in hearing about it.
+          </p>
+
+          <h2 class="section-title">You write the book. We publish it.</h2>
+
+          <p>
+            You bring the expertise and the manuscript. We'll help with the
+            rest.
+          </p>
 
           <ul>
-            <li>Reach a focused audience of Perl developers and teams.</li>
-            <li>Work with friendly editing and a small, responsive press.</li>
-            <li>Keep your book current — we favour concise, updateable
-              ebooks.</li>
-          </ul>
-
-          <h2 class="section-title">What We're Looking For:</h2>
-
-          <ul>
-            <li>Modern Perl: current syntax, proven CPAN modules, and
-              production-tested techniques.</li>
-            <li>Hands-on examples and small, runnable code snippets.</li>
-            <li>Focused scope (books that respect the reader’s time).</li>
-          </ul>
-
-          <h2 class="section-title">Submission Guidelines:</h2>
-
-          <ul>
-            <li>One-page pitch: working title, audience, 5–8 bullet outline,
-              and key takeaway.</li>
-            <li>A short bio (2–3 lines) and links to any talks, articles, or
-              repos.</li>
-            <li>Sample: one section or ~800 words that shows tone and level.</li>
+            <li>Feedback and advice while you develop the book.</li>
+            <li>Editing and proofreading.</li>
+            <li>Production of ebook and print-ready editions.</li>
+            <li>Publication and distribution through platforms such as
+              Leanpub and Amazon.</li>
+            <li>Print-on-demand paperback editions where appropriate.</li>
+            <li>Ongoing updates when your book needs them.</li>
           </ul>
 
           <p>
-            Send your pitch to
-            <a href="mailto:hello@perlschool.com?subject=Pitch%3A%20Your%20idea">hello@perlschool.com</a>.
-            We’ll get back to you soon.
+            Our aim is to let you concentrate on explaining your subject
+            rather than learning the mechanics of publishing.
           </p>
+
+          <h2 class="section-title">The book is ready when it's ready</h2>
+
+          <p>
+            Most Perl School authors have jobs, open-source projects,
+            families and other demands on their time. Life happens.
+          </p>
+
+          <p>
+            We won't give you an arbitrary publication date and then pressure
+            you to meet it. We'll agree how we want to work together and help
+            you keep making progress, but we'll publish the book when we're
+            both happy that it's ready.
+          </p>
+
+          <h2 class="section-title">Authors get 85%</h2>
+
+          <p>
+            Our low-overhead publishing model also lets us offer unusually
+            simple economics.
+          </p>
+
+          <p>
+            <strong>
+              You receive 85% of the money Perl School receives from sales
+              of your book. Perl School keeps 15%.
+            </strong>
+          </p>
+
+          <p>
+            That's 85% of the money paid to us by retailers and publishing
+            platforms, not a small royalty calculated after a traditional
+            publisher has taken its share.
+          </p>
+
+          <p>
+            We'll explain exactly how the arrangement works before you commit
+            to anything.
+          </p>
+
+          <h2 class="section-title">What are we looking for?</h2>
+
+          <p>
+            Books about Perl.
+          </p>
+
+          <p>
+            That might be a guide to a particular module or framework, a book
+            about a specialist technique, an introduction to an area of Perl
+            development, or a new edition of an older book whose rights have
+            returned to its author.
+          </p>
+
+          <p>
+            We like practical experience, clear explanations and examples
+            that help readers get things done. Beyond that, we're deliberately
+            open-minded.
+          </p>
+
+          <h2 class="section-title">Have an idea?</h2>
+
+          <p>
+            You don't need a finished manuscript or a formal book proposal.
+            Tell us what you'd like to write, who you think would read it,
+            and why you're the right person to write it.
+          </p>
+
+          <p>
+            If you already have an outline, sample chapter, conference talk,
+            blog post or repository that helps explain the idea, send that
+            too. But don't create one just for us before we've talked.
+          </p>
+
+          <p>
+            Email
+            <a href="mailto:hello@perlschool.com?subject=Book%20idea">hello@perlschool.com</a>
+            or just use the button below to start the conversation.
+          </p>
+
+          <div class="action-row">
+            <a class="btn btn-primary"
+               href="mailto:hello@perlschool.com?subject=Book%20idea">
+              Tell us your idea
+            </a>
+          </div>
         </div>
       </div>
