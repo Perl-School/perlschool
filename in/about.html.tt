@@ -1,78 +1,80 @@
 [% PROCESS util.tt -%]
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="section-title">About</h1>
-          <p>Perl School began life as a series of low-cost weekend classes.
-            A few years later we turned that same practical approach into
-            ebooks: short, focused, and written by people who use Perl every
-            day. If you care about clear explanations and real-world examples,
-            you’re in the right place.</p>
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="section-title">About Perl School</h1>
 
-	  <h2 class="section-title">About Perl School</h2>
+    <p class="lead">Perl School is an independent publisher specialising
+      in books for the Perl community.</p>
 
-          <p>The Perl School brand has its roots in a series of low-cost Perl
-            training courses that Dave Cross ran in 2012. By running low-cost
-            training at the weekend, he hoped to encourage more programmers to
-            keep their Perl knowledge up to date. These courses were run
-            regularly for about a year before the idea was put on hold for
-            a while.</p>
+    <p>Traditional technical publishers have largely moved away from Perl.
+      We haven't.</p>
 
-          <p>Dave always knew that he would want to return to the Perl School
-            brand at some point and late in 2017 he realised what the obvious
-            next step was - low-cost Perl books. He had already developed a
-            pipeline for creating e-books from Markdown files so it was a
-            short step to republishing some of his training materials as
-            books.</p>
+    <p>There is still useful Perl knowledge worth writing down and sharing,
+      even when the potential audience is too small to interest a large
+      publisher. Perl School exists to publish those books.</p>
 
-          <p>The first Perl School book,
-            <a href="/books/perl-taster/"><i>Perl Taster</i></a> was published
-            at the end of 2017 (just in time for the London Perl Workshop).
-            The second was
-            <a href="/books/selenium-perl/"><i>Selenium and Perl</i></a> and
-            <a href="/books/">several more</a> have followed since then.</p>
+    <p>We publish practical books by experienced Perl developers, from broad
+      introductions to highly specialised subjects. We don't need every book
+      to be a bestseller. A book that is useful to a few hundred Perl
+      programmers can still be well worth publishing.</p>
 
-          <h2 class="section-title">About Dave Cross</h2>
+    <h2 class="section-title">Publishing Perl books</h2>
 
-          <figure class="bio-figure">          
-            [% an_image('dave', 'Dave Cross', 'bio-photo img-fluid', 'png') -%]
-            <figcaption class="bio-caption muted">
-              Dave Cross - author, trainer and long-time Perl community organiser.
-            </figcaption>
-          </figure>
-          <p>Dave Cross has been programming professionally since 1988 and
-            using Perl since 1996. In that time he has used Perl as a glue
-            language, for web development and as a general purpose
-            programming language. He is the author of <i>Data Munging with
-            Perl</i> (Manning, 2001) and a co-author of <i>Perl Template
-            Toolkit</i> (O’Reilly, 2003). He has also written articles about
-            Perl for <i>The Perl Journal</i> and <i>Linux Format</i>.</p>
+    <p>Perl School works with authors to turn their knowledge into books
+      without making the process unnecessarily complicated. We help with
+      editing and production, create ebook and print editions, and handle
+      publication and distribution.</p>
 
-          <p>Dave has run training courses on Perl since 2001. He has run
-            in-house courses for companies ranging from investment banks to
-            dotcoms and he regularly runs public courses in London. He is
-            often invited to give training courses alongside open source
-            conferences like the UKUUG Spring Conference and the London Perl
-            Workshop. He is a regular speaker at both Perl and open source
-            conferences.</p>
+    <p>Our books are available electronically, and new titles are generally
+      also published as print-on-demand paperbacks. That lets us produce
+      specialist printed books without needing warehouses, print runs or
+      boxes of unsold stock.</p>
 
-          <p>Dave has been heavily involved in the Perl community for many
-            years. In 1998, he founded the London Perl Mongers, the first
-            Perl Users’ Group in Europe and he lead the group for its first
-            four years. He then became the International User Groups
-            Co-ordinator for the Perl Foundation. In 2004 he was awarded a
-            White Camel award for his services to the Perl community.</p>
+    <p>We're particularly interested in books that might struggle to find
+      a home with a traditional publisher. That could mean a book about a
+      particular Perl module or framework, a specialist area of Perl
+      development, or a new edition of an older Perl book whose rights have
+      returned to its author.</p>
 
-          <p>Dave owns and runs
-            <a href="https://mag-sol.com/">Magnum Solutions</a>, an open
-            source development consultancy based in London. The rumours
-            about the gold-plated cats were never true.</p>
+    <h2 class="section-title">A little history</h2>
 
-          <aside class="callout mt-4">
-            <p class="mb-2"><strong>Interested in writing for
-              Perl School</strong></p>
-            <p class="mb-0">We're always keen on practical, modern Perl topics.
-              Get in touch at
-              <a href="mailto:hello@perlschool.com">hello@perlschool.com</a></p>
-          </aside>
-        </div>
-      </div>
+    <p>Perl School was created by Dave Cross in 2012 as a series of
+      low-cost weekend Perl training courses. In 2017 the name was revived
+      for a new publishing project, beginning with
+      <a href="/books/perl-taster/"><i>Perl Taster</i></a>.</p>
+
+    <p>Since then Perl School has grown into a small independent publisher,
+      with <a href="/books/">books by several authors</a> covering a growing
+      range of Perl subjects.</p>
+
+    <h2 class="section-title">About Dave Cross</h2>
+
+    <figure class="bio-figure">
+      [% an_image('dave', 'Dave Cross', 'bio-photo img-fluid', 'png') -%]
+      <figcaption class="bio-caption muted">
+        Dave Cross - founder of Perl School.
+      </figcaption>
+    </figure>
+
+    <p>Dave Cross is a Perl developer, author and trainer who has been part
+      of the Perl community since the 1990s. He is the author of
+      <i>Data Munging with Perl</i> and co-author of
+      <i>Perl Template Toolkit</i>, and has spoken and taught at Perl and
+      open source conferences for many years.</p>
+
+    <p>He founded London Perl Mongers in 1998 and received a White Camel
+      Award in 2004 for his contributions to the Perl community. Perl School
+      is published by his company, Magnum Solutions Ltd.</p>
+
+    <div class="clearfix"></div>
+
+    <aside class="callout mt-4">
+      <p class="mb-2"><strong>Know something about Perl that deserves a
+        book?</strong></p>
+      <p class="mb-0">
+        We're always interested in hearing from potential authors.
+        <a href="/write-for-us/">Find out about writing for Perl School</a>.
+      </p>
+    </aside>
+  </div>
+</div>
