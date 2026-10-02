@@ -167,9 +167,8 @@ entry in `_build_pages` in `Build.pm` to be generated and added to the sitemap.
 
 For a new book, add its author/book records, cover assets, and any example
 archives. The current image convention uses `static/images/<image>.webp`,
-`<image>.png`, and `<image>-og.png` for social previews. The detail template
-requests a JPG fallback, although the checked-in covers are PNG/WebP; supply
-the JPG or account for that mismatch when changing images.
+`<image>.png`, and `<image>-og.png` for social previews. Book detail pages use
+WebP covers with a PNG source and image fallback, matching the checked-in assets.
 
 ### Maintenance scripts
 

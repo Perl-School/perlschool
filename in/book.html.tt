@@ -11,7 +11,7 @@
 
 <div class="row hero align-items-start g-4">
   <div class="col-lg-5">
-    [% an_image(feature.image, feature.title, 'img-fluid book-cover', 'jpg') -%]
+    [% an_image(feature.image, feature.title, 'img-fluid book-cover', 'png') -%]
   </div>
 
   <div class="col-lg-7">
