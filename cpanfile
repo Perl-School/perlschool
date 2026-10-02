@@ -11,3 +11,7 @@ requires 'MooseX::NonMoose';
 requires 'MooX::Role::JSON_LD';
 requires 'Path::Tiny', '0.125';
 requires 'Template';
+
+on test => sub {
+  requires 'XML::Parser';
+};

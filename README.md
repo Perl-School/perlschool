@@ -28,7 +28,7 @@ connection at request time; purchases happen on external sites.
 | `data/` | HTML table-of-contents fragments that can be imported into book records. |
 | `docs/` | Generated website; ignored by Git. This is build output, not project documentation. |
 | `cpanfile` | CPAN dependencies. |
-| `t/` | Tests for metadata text, rendered description attributes, and legacy redirects. |
+| `t/` | Tests for metadata, legacy redirects, and XML/URL validation of a full-build sitemap. |
 | `.github/workflows/buildsite.yml` | Build and GitHub Pages deployment workflow. |
 
 ## Build and preview locally
@@ -108,8 +108,8 @@ School titles. An author with only hidden titles can still appear without books.
 Template Toolkit searches `in/` and `ttlib/` and wraps output in `page.tt`.
 That wrapper adds navigation, metadata, recent-book cards, a mailing-list form,
 and the footer for templates whose names contain `.html`; other templates pass
-through without the HTML shell. Book and author models provide Schema.org
-JSON-LD through `MooX::Role::JSON_LD`.
+through without the HTML shell or any preceding whitespace. Book and author
+models provide Schema.org JSON-LD through `MooX::Role::JSON_LD`.
 
 ## Catalogue and content maintenance
 
@@ -205,6 +205,8 @@ Pages artifact, and deploys that artifact in a separate job. It supplies
 `static/CNAME` contains `perlschool.com`; `.nojekyll` is copied into the output.
 The workflow runs the site-generation tests before building. Run them locally with
 `PERL5LIB=lib prove -v t`. Dependabot is configured for weekly GitHub Actions updates.
+The sitemap test builds the site in a temporary directory and uses the test
+dependency `XML::Parser` to validate the generated XML and its page URLs.
 
 Browser-side integrations include Bootstrap from jsDelivr, Google Analytics,
 AddToAny sharing, Kit mailing-list forms, and an embedded Google Form on `/lpw/`.
@@ -226,20 +228,20 @@ Repository inspection and a build in a fresh temporary directory on
 - The database contains 12 books, five authors, 13 marketplaces, and no sales
   rows. Nine books meet the site's visibility filters. SQLite's
   `PRAGMA integrity_check` returns `ok`.
-- The sitemap contains 17 canonical URLs, but a leading blank line before the
-  XML declaration causes strict XML parsing to fail. The wrapper introduces
-  that whitespace even for non-HTML output.
+- The sitemap contains 17 canonical URLs. Its XML declaration starts at the
+  first byte, and the generated sitemap passes strict XML parsing.
 - `bin/loaddata` fails compilation because `$rs` is undeclared. It cannot be
   used as the current catalogue-loading procedure.
 - `PRAGMA foreign_key_check` fails with a foreign-key mismatch: `amazon_sales`
   references `amazon_site.code`, which has no primary-key or unique constraint.
 - `perlschool.sql` omits later columns and both Amazon tables. Use the tracked
   database as the current schema reference.
-- The metadata and redirect changes add focused tests for description fallback,
-  entities, escaping, rendered book metadata, and both legacy routes. Broader
-  generated-site validation for local links and XML is still absent. Some directly
+- Tests cover description fallback, entities, escaping, rendered book metadata,
+  both legacy routes, and full-build sitemap XML and page URLs. Broader
+  validation of local asset and download links is still absent. Some directly
   used modules, including `JSON`, `DateTime`, and `Moo`, are not explicitly
   declared in `cpanfile`; the successful local build does not verify dependency
   installation from scratch.
 
-The limitations above remain outside the metadata-description and redirect fixes.
+The limitations above remain outside the metadata-description, redirect, and
+sitemap fixes.

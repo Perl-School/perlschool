@@ -1,3 +1,4 @@
+[% IF template.name.match('\.html') -%]
 [% PROCESS util.tt -%]
 [% title = 'Perl School Publishing';
    description = 'Perl eBooks written by experts';
@@ -20,7 +21,6 @@
    ELSE;
      title = title _ ' - Perl books written by experts';
    END -%]
-[% IF template.name.match('\.html') -%]
 <!DOCTYPE html>
 <html lang="en">
 <!-- [% template.name -%] -->
