@@ -4,6 +4,8 @@ requires 'DBIx::Class';
 requires 'DBIx::Class::Schema::ResultSetNames';
 requires 'DateTime::Format::SQLite';
 requires 'ENV::Util';
+requires 'HTML::Entities';
+requires 'HTML::Strip';
 requires 'Moose';
 requires 'MooseX::NonMoose';
 requires 'MooX::Role::JSON_LD';

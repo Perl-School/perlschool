@@ -5,7 +5,7 @@
    type = 'website';
    IF template.name.match('^book\.');
      title = feature.title _ ' - ' _ title;
-     description = feature.blurb;
+     description = feature.meta_description;
      image = 'https://perlschool.com/images/' _ feature.image _ '-og';
      type = 'book';
    ELSIF ! template.name.match('^index');
@@ -42,18 +42,18 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="[% description %]">
+  <meta name="description" content="[% description | html %]">
   <meta name="author" content="Dave Cross">
 
   <meta property="og:title" content="[% title | html %]">
   <meta property="og:url" content="[% canonical %]">
   <meta property="og:image" content="[% image %].png">
   <meta property="og:type" content="[% type %]">
-  <meta property="og:description" content="[% description %]">
+  <meta property="og:description" content="[% description | html %]">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@perl_school">
   <meta name="twitter:title" content="[% title %]">
-  <meta name="twitter:description" content="[% description %]">
+  <meta name="twitter:description" content="[% description | html %]">
   <meta name="twitter:image" content="[% image %].png">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">

@@ -1,0 +1,5 @@
+BEGIN TRANSACTION;
+
+ALTER TABLE book ADD COLUMN seo_description text;
+
+COMMIT;

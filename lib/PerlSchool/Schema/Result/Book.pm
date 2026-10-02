@@ -161,6 +161,11 @@ __PACKAGE__->table("book");
   is_nullable: 1
   size: 20
 
+=head2 seo_description
+
+  data_type: 'text'
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -208,6 +213,8 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 1 },
   "kit_list",
   { data_type => "char", is_nullable => 1, size => 20 },
+  "seo_description",
+  { data_type => "text", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -260,13 +267,33 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07053 @ 2026-09-23 11:32:30
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:4j9jglTZzEft8SIY+QSUqQ
+# Created by DBIx::Class::Schema::Loader v0.07053 @ 2026-10-02 17:59:33
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:7AE/Wo0YoQkEHl53hDlrYw
 
 use Moo;
 with 'MooX::Role::JSON_LD';
 
 use DateTime;
+use HTML::Entities qw( decode_entities );
+use HTML::Strip;
+
+sub meta_description {
+  my $self = shift;
+
+  my $description = $self->seo_description;
+
+  unless (defined $description && $description =~ /\S/u) {
+    my $stripper = HTML::Strip->new(decode_entities => 0);
+    $description = $stripper->parse($self->blurb // '');
+    $stripper->eof;
+    $description = decode_entities($description);
+  }
+
+  $description =~ s/\s+/ /gu;
+  $description =~ s/^\s+|\s+$//gu;
+
+  return $description;
+}
 
 sub json_ld_type { 'Book' };
 
