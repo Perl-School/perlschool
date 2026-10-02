@@ -37,8 +37,14 @@ Run commands from the repository root: templates, assets, the default database
 path, and output path are relative to the working directory.
 
 You need Perl and the dependencies in `cpanfile`. The result-set modules require
-at least Perl 5.20; no supported-version matrix is defined. Install dependencies
-with `cpanm` using your usual system or local-library installation setup:
+at least Perl 5.20; no supported-version matrix is defined.
+
+Building the native dependencies from CPAN needs a C/C++ compiler and Expat
+development headers for the `XML::Parser` test dependency (`libexpat1-dev` on
+Debian/Ubuntu or `expat-devel` on Fedora). CI installs the Expat headers explicitly.
+
+Install dependencies with `cpanm` using your usual system or local-library
+installation setup:
 
 ```sh
 cpanm --installdeps .
@@ -237,10 +243,8 @@ Repository inspection and a build in a fresh temporary directory on
   database as the current schema reference.
 - Tests cover description fallback, entities, escaping, rendered book metadata,
   both legacy routes, and full-build sitemap XML and page URLs. Broader
-  validation of local asset and download links is still absent. Some directly
-  used modules, including `JSON`, `DateTime`, and `Moo`, are not explicitly
-  declared in `cpanfile`; the successful local build does not verify dependency
-  installation from scratch.
-
-The limitations above remain outside the metadata-description, redirect, and
-sitemap fixes.
+  validation of local asset and download links is still absent. Directly used
+  runtime modules, including `JSON`, `DateTime`, and `Moo`, are explicitly
+  declared in `cpanfile`.
+- A fresh contained CPAN installation was verified with all 63 tests, including
+  the full site build. Non-core system CPAN modules were excluded from that check.

@@ -16,10 +16,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v7
 
-    - name: Install cpanm
+    - name: Install cpanm and Expat headers
       run: |
           sudo apt-get update -y
-          sudo apt-get install -y cpanminus
+          sudo apt-get install -y cpanminus libexpat1-dev
 
     - name: Install modules
       run: |
