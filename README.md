@@ -28,7 +28,7 @@ connection at request time; purchases happen on external sites.
 | `data/` | HTML table-of-contents fragments that can be imported into book records. |
 | `docs/` | Generated website; ignored by Git. This is build output, not project documentation. |
 | `cpanfile` | CPAN dependencies. |
-| `t/` | Tests for metadata text and rendered description attributes. |
+| `t/` | Tests for metadata text, rendered description attributes, and legacy redirects. |
 | `.github/workflows/buildsite.yml` | Build and GitHub Pages deployment workflow. |
 
 ## Build and preview locally
@@ -90,6 +90,10 @@ Canonical links and social-image URLs still point at `https://perlschool.com/`.
 5. Renders the authors page.
 6. Renders `/books/`, `/about/`, `/contact/`, `/write/`, `/faq/`, and `/lpw/`.
 7. Writes `sitemap.xml` from the canonical URLs collected while rendering pages.
+
+Legacy routes use a self-contained HTML template with an immediate
+meta-refresh redirect, a canonical link to the destination, and a visible
+fallback link. They are excluded from the sitemap.
 
 The catalogue query requires both `is_perlschool_book = 1` and `is_live = 1`,
 and orders by `pubdate` descending. A future publication date does not hide a
@@ -199,7 +203,7 @@ Pages artifact, and deploys that artifact in a separate job. It supplies
 `./perlschool.db` to use the checked-in database. Pages deployment uses the
 `github-pages` environment with `pages: write` and `id-token: write` permissions.
 `static/CNAME` contains `perlschool.com`; `.nojekyll` is copied into the output.
-The workflow runs the metadata tests before building. Run them locally with
+The workflow runs the site-generation tests before building. Run them locally with
 `PERL5LIB=lib prove -v t`. Dependabot is configured for weekly GitHub Actions updates.
 
 Browser-side integrations include Bootstrap from jsDelivr, Google Analytics,
@@ -225,20 +229,17 @@ Repository inspection and a build in a fresh temporary directory on
 - The sitemap contains 17 canonical URLs, but a leading blank line before the
   XML declaration causes strict XML parsing to fail. The wrapper introduces
   that whitespace even for non-HTML output.
-- Legacy route files contain only a “Redirecting…” paragraph. `redirect.tt`
-  does not match the wrapper's `.html` condition, so the meta-refresh logic in
-  `page.tt` is never emitted. These files do not actually redirect browsers.
 - `bin/loaddata` fails compilation because `$rs` is undeclared. It cannot be
   used as the current catalogue-loading procedure.
 - `PRAGMA foreign_key_check` fails with a foreign-key mismatch: `amazon_sales`
   references `amazon_site.code`, which has no primary-key or unique constraint.
 - `perlschool.sql` omits later columns and both Amazon tables. Use the tracked
   database as the current schema reference.
-- The metadata change adds focused tests for description fallback, entities,
-  escaping, and rendered book metadata. Broader generated-site validation for
-  links, redirects, and XML is still absent. Some directly
+- The metadata and redirect changes add focused tests for description fallback,
+  entities, escaping, rendered book metadata, and both legacy routes. Broader
+  generated-site validation for local links and XML is still absent. Some directly
   used modules, including `JSON`, `DateTime`, and `Moo`, are not explicitly
   declared in `cpanfile`; the successful local build does not verify dependency
   installation from scratch.
 
-The limitations above remain outside the metadata-description change.
+The limitations above remain outside the metadata-description and redirect fixes.

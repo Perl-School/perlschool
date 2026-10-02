@@ -35,11 +35,6 @@
     gtag('config', 'G-QPNNC024NN');
   </script>
 
-[% IF redirect -%]
-  <meta http-equiv="refresh" content="0; URL=[% redirect %]">
-  <link rel="canonical" href="[% redirect %]">
-[% END -%]
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="[% description | html %]">

@@ -1,1 +1,12 @@
-<p>[% title %]</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0; URL=[% redirect | html %]">
+  <link rel="canonical" href="[% redirect | html %]">
+  <title>[% title | html %]</title>
+</head>
+<body>
+  <p>Continue to <a href="[% redirect | html %]">[% redirect | html %]</a>.</p>
+</body>
+</html>

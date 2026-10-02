@@ -25,7 +25,7 @@ jobs:
       run: |
           sudo cpanm --installdeps --notest .
 
-    - name: Test metadata descriptions
+    - name: Test site generation
       run: PERL5LIB=lib prove -v t
 
     - name: Create pages
