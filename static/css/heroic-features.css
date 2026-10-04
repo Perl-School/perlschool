@@ -14,6 +14,10 @@
   --brand-600: #247a41;
   --brand-700: #1f6b39;
   --brand-50: #eaf6ee;
+  --link: var(--brand);
+  --link-hover: var(--brand-600);
+  --badge-text: var(--brand-700);
+  --logo-filter: none;
 
   /* Neutrals */
   --bg: #ffffff;
@@ -22,6 +26,12 @@
   --border: #e5e7eb;
   --card: #ffffff;
   --shadow: 0 6px 20px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+
+  /* Keep Bootstrap components aligned with the publisher palette. */
+  --bs-body-color: var(--text);
+  --bs-body-bg: var(--bg);
+  --bs-border-color: var(--border);
+  color-scheme: light;
 
   /* Type */
   --ff-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
@@ -38,6 +48,11 @@
     --card: #0f141a;
     --shadow: 0 6px 20px rgba(0, 0, 0, 0.40), 0 2px 6px rgba(0, 0, 0, 0.30);
     --brand-50: #102317;
+    --link: #75d397;
+    --link-hover: #9de2b6;
+    --badge-text: #9de2b6;
+    --logo-filter: invert(1) hue-rotate(180deg);
+    color-scheme: dark;
   }
 }
 
@@ -62,12 +77,12 @@ img {
 
 /* Links and buttons */
 a {
-  color: var(--brand);
+  color: var(--link);
   text-underline-offset: 2px;
 }
 
 a:hover {
-  color: var(--brand-600);
+  color: var(--link-hover);
 }
 
 .btn-primary {
@@ -81,8 +96,8 @@ a:hover {
 }
 
 .btn-outline-primary {
-  --bs-btn-color: var(--brand);
-  --bs-btn-border-color: var(--brand);
+  --bs-btn-color: var(--link);
+  --bs-btn-border-color: var(--link);
   --bs-btn-hover-bg: var(--brand);
   --bs-btn-hover-border-color: var(--brand);
 }
@@ -105,6 +120,7 @@ a:hover {
 .navbar-brand svg {
   height: 28px;
   width: auto;
+  filter: var(--logo-filter);
 }
 
 .nav-link {
@@ -114,12 +130,12 @@ a:hover {
 .nav-link.active,
 .nav-link:focus,
 .nav-link:hover {
-  color: var(--brand) !important;
+  color: var(--link) !important;
 }
 
 /* 4) Hero (featured title) */
 .hero {
-  background: linear-gradient(180deg, var(--brand-50), transparent 55%);
+  background: linear-gradient(180deg, var(--brand-50), var(--card) 55%);
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: clamp(1.2rem, 1.5vw + 1rem, 2rem);
@@ -166,13 +182,13 @@ a:hover {
   font-size: 0.85rem;
   border-radius: 999px;
   background: var(--brand-50);
-  color: var(--brand-700) !important;
+  color: var(--badge-text) !important;
   border: 1px solid var(--brand-600);
 }
 
 .hero .badges .badge.badge-outline {
   background: transparent;
-  color: var(--brand-700) !important;
+  color: var(--badge-text) !important;
   border: 1px solid var(--brand-600);
 }
 
@@ -254,7 +270,7 @@ footer {
 }
 
 footer a {
-  color: var(--brand);
+  color: var(--link);
 }
 
 /* 8) Legacy cleanups */
@@ -267,7 +283,7 @@ img.float {
 }
 
 .coming-soon {
-  color: var(--brand-700);
+  color: var(--badge-text);
   font-weight: 700;
 }
 
@@ -357,11 +373,11 @@ img.float {
 }
 
 .book-author {
-  color: var(--brand);
+  color: var(--link);
 }
 
 .book-author:hover {
-  color: var(--brand-600);
+  color: var(--link-hover);
 }
 
 .book-blurb {
