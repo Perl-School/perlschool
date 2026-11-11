@@ -109,10 +109,15 @@
     <script async data-uid="caf9a316cf" src="https://perl-school.kit.com/[% feature.kit_list %]/index.js"></script>
 [%   END -%]
 
+    <h2 class="section-title mt-3">Extras</h2>
+    <div class="action-row">
+      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#errataModal">
+        Errata
+      </button>
 [% IF feature.website -%]
-    <h2 class="section-title mt-3">Website</h2>
-    <a class="btn btn-primary" target="_blank" href="[% feature.website %]">Website</a>
+      <a class="btn btn-primary" target="_blank" href="[% feature.website | html %]">Website</a>
 [% END -%]
+    </div>
 
   </div>
 </div>

@@ -1,0 +1,69 @@
+<div class="modal fade" id="errataModal" tabindex="-1" aria-labelledby="errataModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="errataModalTitle">Errata</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="muted"><strong>[% feature.title | html %]</strong></p>
+[% entries = feature.errata_list -%]
+[% IF entries.size -%]
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <caption class="visually-hidden">Errata for [% feature.title | html %]</caption>
+            <thead>
+              <tr>
+                <th scope="col">Date reported</th>
+                <th scope="col">Status</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+[% FOREACH entry IN entries -%]
+              <tr>
+                <td class="text-nowrap"><time datetime="[% entry.date_reported.strftime('%Y-%m-%d') %]">[% entry.date_reported.strftime('%d %b %Y') %]</time></td>
+                <td>[% entry.status | html %]</td>
+                <td class="errata-description">[% entry.description | html %]</td>
+              </tr>
+[% END -%]
+            </tbody>
+          </table>
+        </div>
+[% ELSE -%]
+        <p>No errata reported</p>
+[% END -%]
+
+        <h2 class="h5 mt-4">Report a problem</h2>
+[% IF app.errata_form_url -%]
+        <p id="errataReportHelp">Please include the page or section and the book edition or format. Reports are reviewed before corrections appear here.</p>
+        <div id="errataReportStatus" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></div>
+        <form action="[% app.errata_form_url | html %]" method="post" id="errataReportForm" aria-describedby="errataReportHelp">
+          <input type="hidden" name="subject" value="Errata report: [% feature.title | html %]">
+          <input type="hidden" name="book_title" value="[% feature.title | html %]">
+          <input type="hidden" name="book_slug" value="[% feature.slug | html %]">
+          <input type="hidden" name="book_url" value="[% canonical | html %]">
+          <div class="mb-3">
+            <label for="errataName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="errataName" name="name" autocomplete="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="errataEmail" class="form-label">Email address (optional)</label>
+            <input type="email" class="form-control" id="errataEmail" name="email" autocomplete="email">
+          </div>
+          <div class="mb-3">
+            <label for="errataDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="errataDescription" name="description" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send report</button>
+        </form>
+[% ELSE -%]
+        <p>Please <a href="mailto:hello@perlschool.com">email us</a> with the book title, edition or format, page or section, and a description of the problem.</p>
+[% END -%]
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,7 @@ jobs:
 
     env:
       PERLSCHOOL_DB: ${{ vars.PERLSCHOOL_DB }}
+      PERLSCHOOL_ERRATA_FORM_URL: ${{ vars.PERLSCHOOL_ERRATA_FORM_URL }}
 
     steps:
     - name: Checkout

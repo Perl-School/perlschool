@@ -28,7 +28,7 @@ connection at request time; purchases happen on external sites.
 | `data/` | HTML table-of-contents fragments that can be imported into book records. |
 | `docs/` | Generated website; ignored by Git. This is build output, not project documentation. |
 | `cpanfile` | CPAN dependencies. |
-| `t/` | Tests for metadata, legacy redirects, and XML/URL validation of a full-build sitemap. |
+| `t/` | Tests for metadata, errata, legacy redirects, and XML/URL validation of a full-build sitemap. |
 | `.github/workflows/buildsite.yml` | Build and GitHub Pages deployment workflow. |
 
 ## Build and preview locally
@@ -131,6 +131,7 @@ The main tables are:
 | --- | --- |
 | `author` | Name, biography, and sort name; has many books. |
 | `book` | Catalogue metadata, content, and visibility; belongs to an author through `author_id`. |
+| `errata` | Manually reviewed corrections belonging to a book: report date, status, and plain-text description. |
 | `amazon_site` | Marketplace codes, domains, currencies, and ordering for the older link helpers. |
 | `amazon_sales` | Monthly units, borrows, and pages read per book and marketplace; unused by the site build. |
 
@@ -165,6 +166,57 @@ sqlite3 -bail path/to/catalogue.db < migrations/001-add-book-seo-description.sql
 The migration adds a nullable column without changing existing book fields.
 The checked-in catalogue has an explicit summary for Data Munging with Perl;
 other books use the fallback unless a summary is supplied.
+
+### Book errata
+
+Every book detail page has an **Errata** button. Its modal lists that book's
+published corrections, newest first, or “No errata reported”. Status and
+description are plain text; descriptions retain line breaks. Reporter names
+and email addresses are not stored in the public catalogue.
+
+To enable the **Report a problem** form:
+
+1. Create a form in your Formspree account and copy its endpoint URL.
+2. Set `PERLSCHOOL_ERRATA_FORM_URL=https://formspree.io/f/YOUR_FORM_ID` in `.env`
+   for local builds. Replace `YOUR_FORM_ID` with the real ID.
+3. Add the same `PERLSCHOOL_ERRATA_FORM_URL` repository variable in GitHub
+   Actions settings, then rebuild/deploy the site.
+
+Without an endpoint, the modal offers an email link instead. With it, reports
+are sent to Formspree using AJAX, with success or error feedback inside the
+modal. The submit button is disabled while sending, and entered text is kept
+on failure so the reader can retry. Without JavaScript, the form falls back
+to a normal POST and Formspree's confirmation page.
+Name and description are required; email is optional. Hidden fields identify
+the book title, slug, and canonical URL. Reports do not appear automatically:
+review them in Formspree and manually add approved corrections to the database.
+
+The checked-in database includes the `errata` table. To upgrade an older copy
+that already has the SEO migration, back it up and apply this migration once:
+
+```sh
+sqlite3 -bail path/to/catalogue.db < migrations/002-add-errata.sql
+```
+
+For example, in a SQLite session against your catalogue, add a reviewed erratum
+using the book's slug (replace the example text and date):
+
+```sql
+INSERT INTO errata (book_id, date_reported, status, description)
+SELECT id, '2026-11-11', 'Reported', 'Page 42: replace the incorrect example.'
+FROM book WHERE slug = 'data-munging';
+
+SELECT id, date_reported, status, description
+FROM errata WHERE book_id = (SELECT id FROM book WHERE slug = 'data-munging');
+
+UPDATE errata SET status = 'Fixed' WHERE id = 123;
+```
+
+Use the actual erratum ID in the update. Status is free text, for example
+`Reported`, `Confirmed`, or `Fixed in the second edition`. Omitting the date or
+status when inserting defaults to today's UTC date and `Reported`. Use ISO
+dates (`YYYY-MM-DD`) and double any apostrophes in SQL strings. Commit the
+database change and rebuild/deploy to publish the updated list.
 
 To update a page's prose, edit its template in `in/`. To change shared layout or
 metadata, edit `ttlib/page.tt`; image and badge helpers are in `ttlib/util.tt`.

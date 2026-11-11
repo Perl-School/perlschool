@@ -456,3 +456,8 @@ img.float {
   margin-top: 0.25rem;
 }
 
+.errata-description {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+

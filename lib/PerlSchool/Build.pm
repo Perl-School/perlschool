@@ -80,6 +80,18 @@ has canonical_url => (
   default => 'https://perlschool.com/',
 );
 
+has errata_form_url => (
+  isa => 'Str',
+  is => 'ro',
+  lazy => 1,
+  default => sub {
+    my $url = $ENV{PERLSCHOOL_ERRATA_FORM_URL} // '';
+    croak 'PERLSCHOOL_ERRATA_FORM_URL must be a Formspree endpoint (https://formspree.io/f/FORM_ID)'
+      if length($url) && $url !~ m{\Ahttps://formspree\.io/f/[a-zA-Z0-9]+/?\z};
+    return $url;
+  },
+);
+
 has urls => (
   isa     => 'ArrayRef',
   is      => 'rw',

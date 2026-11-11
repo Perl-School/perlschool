@@ -277,6 +277,20 @@ use DateTime;
 use HTML::Entities qw( decode_entities );
 use HTML::Strip;
 
+__PACKAGE__->has_many(
+  errata => 'PerlSchool::Schema::Result::Erratum',
+  { 'foreign.book_id' => 'self.id' },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+sub errata_list {
+  my $self = shift;
+
+  return [ $self->errata->search(undef, {
+    order_by => [ { -desc => 'date_reported' }, { -desc => 'id' } ],
+  })->all ];
+}
+
 sub meta_description {
   my $self = shift;
 
