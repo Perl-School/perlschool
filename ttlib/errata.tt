@@ -43,6 +43,7 @@
           <input type="hidden" name="book_title" value="[% feature.title | html %]">
           <input type="hidden" name="book_slug" value="[% feature.slug | html %]">
           <input type="hidden" name="book_url" value="[% canonical | html %]">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
           <div class="mb-3">
             <label for="errataName" class="form-label">Name</label>
             <input type="text" class="form-control" id="errataName" name="name" autocomplete="name" required>
