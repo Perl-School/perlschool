@@ -7,7 +7,8 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
 
     env:
       PERLSCHOOL_DB: ${{ vars.PERLSCHOOL_DB }}
@@ -19,8 +20,8 @@ jobs:
 
     - name: Install cpanm and Expat headers
       run: |
-          sudo apt-get update -y
-          sudo apt-get install -y cpanminus libexpat1-dev
+          sudo apt-get -o Acquire::Retries=5 update -y
+          sudo apt-get -o Acquire::Retries=5 install -y cpanminus libexpat1-dev
 
     - name: Install modules
       run: |
@@ -47,7 +48,8 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
