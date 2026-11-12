@@ -1,0 +1,152 @@
+<ul>
+<li>Preface</li>
+<li>Preface to the First Edition</li>
+<li>Part I - Foundations</li>
+<li>Chapter 1: Data, data munging, and Perl
+<ul>
+<li>What is data munging?</li>
+<li>Why is data munging important?</li>
+<li>Where does data come from? Where does it go?</li>
+<li>What forms does data take?</li>
+<li>What is Perl?</li>
+</ul>
+</li>
+<li>Chapter 2: General munging practices
+<ul>
+<li>Decouple input, munging, and output processes</li>
+<li>Design data structures carefully</li>
+<li>Encapsulate business rules</li>
+<li>Use UNIX “filter” model</li>
+<li>Write audit trails</li>
+</ul>
+</li>
+<li>Chapter 3: Useful Perl idioms
+<ul>
+<li>Sorting</li>
+<li>Database interface (DBI)</li>
+<li>Data::Dumper</li>
+<li>Testing</li>
+<li>Benchmarking</li>
+<li>Command line scripts</li>
+<li>Feature pragmas</li>
+<li>Path::Tiny</li>
+</ul>
+</li>
+<li>Chapter 4: Pattern matching
+<ul>
+<li>String handling functions</li>
+<li>Regular expressions</li>
+</ul>
+</li>
+<li>Part II - Data munging</li>
+<li>Chapter 5: Unstructured Data
+<ul>
+<li>Text files</li>
+<li>Unicode</li>
+<li>Data conversions</li>
+</ul>
+</li>
+<li>Chapter 6: Record-oriented data
+<ul>
+<li>Simple record-oriented data</li>
+<li>Comma-separated files</li>
+<li>Complex records</li>
+<li>Special problems with date fields</li>
+<li>Extended example: when do you write code?</li>
+</ul>
+</li>
+<li>Chapter 7: Fixed-width and binary data
+<ul>
+<li>Fixed-width data</li>
+<li>Binary data</li>
+</ul>
+</li>
+<li>Part III - Data parsing</li>
+<li>Chapter 8: Complex data formats
+<ul>
+<li>Complex data files</li>
+<li>How not to parse HTML</li>
+<li>Parsers</li>
+</ul>
+</li>
+<li>Chapter 9: HTML
+<ul>
+<li>Extracting HTML data from the World Wide Web</li>
+<li>Parsing HTML</li>
+<li>Prebuilt HTML parsers</li>
+<li>A cautionary tale about scraping</li>
+<li>Web::Query: a modern alternative</li>
+</ul>
+</li>
+<li>Chapter 10: Common Data Interchange Formats
+<ul>
+<li>Data interchange formats</li>
+<li>Parsing XML with XML::LibXML</li>
+<li>Specialised parsers—XML::RSS</li>
+<li>Working with JSON</li>
+<li>Working with YAML</li>
+<li>Producing different document formats</li>
+</ul>
+</li>
+<li>Chapter 11: Building your own parsers
+<ul>
+<li>Introduction to Regexp::Grammars</li>
+<li>Returning parsed data</li>
+<li>From parse tree to data structure</li>
+<li>Another example: the CD data file</li>
+<li>Other features of Regexp::Grammars</li>
+</ul>
+</li>
+<li>Part IV - The big picture</li>
+<li>Chapter 12: Looking Back and Ahead
+<ul>
+<li>The usefulness of things</li>
+<li>Things to know</li>
+</ul>
+</li>
+<li>Appendix A: Modules Reference
+<ul>
+<li>DBI</li>
+<li>Test2::V0</li>
+<li>Path::Tiny</li>
+<li>Number::Format</li>
+<li>Regexp::Common</li>
+<li>Text::CSV</li>
+<li>Time::Piece</li>
+<li>DateTime</li>
+<li>LWP::Simple</li>
+<li>HTML::Parser</li>
+<li>HTML::LinkExtor</li>
+<li>HTML::TokeParser</li>
+<li>HTML::TreeBuilder</li>
+<li>Web::Query</li>
+<li>XML::LibXML</li>
+<li>JSON::MaybeXS</li>
+<li>YAML::PP</li>
+<li>HTTP::Tiny</li>
+<li>Regexp::Grammars</li>
+</ul>
+</li>
+<li>Appendix B: Essential Perl
+<ul>
+<li>Running Perl</li>
+<li>Installing modules from CPAN</li>
+<li>The modern baseline</li>
+<li>Variables and data types</li>
+<li>Operators</li>
+<li>Flow of control</li>
+<li>Subroutines</li>
+<li>References and data structures</li>
+<li>Regular expressions</li>
+<li>A nod to object orientation</li>
+<li>Further reading</li>
+</ul>
+</li>
+<li>About the Book
+<ul>
+<li>About Perl School</li>
+<li>About Dave Cross</li>
+</ul>
+</li>
+<li>Index</li>
+</ul>
