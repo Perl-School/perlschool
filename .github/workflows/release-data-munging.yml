@@ -1,0 +1,85 @@
+name: Data Munging publication day
+
+# Applies the publication-day catalogue changes for Data Munging with Perl
+# (release/data-munging-2026-11-21.sql), commits them, and rebuilds the site.
+#
+#  * It runs by itself at 05:17 UTC on 21 November (GitHub's cron times are UTC;
+#    London is on UTC in November). Scheduled runs can start several minutes
+#    late. The year check below stops it doing anything on 21 November in later
+#    years.
+#  * Run it by hand from the Actions tab (workflow_dispatch) to test: "dry run"
+#    (on by default) applies the SQL, shows the resulting row and throws the
+#    change away, so nothing is committed or rebuilt. Untick it to do the real
+#    thing early or again.
+#  * The site is rebuilt by starting the "Generate web page" workflow explicitly:
+#    a push made with the built-in token does not start other workflows.
+
+on:
+  schedule:
+    - cron: '17 5 21 11 *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run: show the change but do not commit or rebuild'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Only in 2026
+        if: github.event_name == 'schedule'
+        run: |
+          if [ "$(date -u +%Y)" != "2026" ]; then
+            echo "::notice::Not 2026: nothing to do"
+            echo "SKIP=1" >> "$GITHUB_ENV"
+          fi
+
+      - uses: actions/checkout@v7
+        if: env.SKIP != '1'
+        with:
+          ref: master
+
+      - name: Make sure sqlite3 is available
+        if: env.SKIP != '1'
+        run: command -v sqlite3 || sudo apt-get -o Acquire::Retries=5 install -y sqlite3
+
+      - name: Apply the catalogue changes
+        if: env.SKIP != '1'
+        run: |
+          sqlite3 -bail perlschool.db < release/data-munging-2026-11-21.sql
+          sqlite3 -header -column perlschool.db \
+            "select slug, pubdate, amazon_asin, isbn, has_paperback, highlights, buy_blurb from book where slug = 'data-munging'"
+
+      - name: Dry run - stop here
+        if: env.SKIP != '1' && env.DRY_RUN == 'true'
+        run: |
+          git status --short
+          git checkout -- perlschool.db
+          echo "Dry run: nothing committed, no rebuild."
+
+      - name: Commit the change
+        if: env.SKIP != '1' && env.DRY_RUN != 'true'
+        run: |
+          if git diff --quiet -- perlschool.db; then
+            echo "Catalogue already up to date: nothing to commit"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add perlschool.db
+            git commit -m "Publication day: Data Munging with Perl, second edition"
+            git push
+          fi
+
+      - name: Rebuild the site
+        if: env.SKIP != '1' && env.DRY_RUN != 'true'
+        run: gh workflow run buildsite.yml --ref master
