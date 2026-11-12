@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+
+dir="$(cd "$(dirname "$0")" && pwd)"
+# shellcheck source=bin/func_defs
+. "$dir/func_defs"
+
+check_vars
+
+if [[ $# -eq 0 ]]; then
+  db_shell
+else
+  # Pass args as one SQL statement to stdin (keeps quoting simple)
+  printf '%s\n' "$*" | db_exec
+fi
+

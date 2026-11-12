@@ -1,0 +1,53 @@
+#!/bin/bash
+# Common helpers for DB scripts (SQLite only)
+
+# --- Resolve SQLite db file --------------------------------------------------
+sqlite_db_path() {
+  if [[ -n "$PERLSCHOOL_DB_PATH" ]]; then
+    printf '%s' "$PERLSCHOOL_DB_PATH"
+    return
+  fi
+  # Try to extract dbname=... from PERLSCHOOL_DSN (handles ;mode=ro;… after it)
+  # e.g. dbi:SQLite:dbname=/path/to/los.sqlite;mode=ro;immutable=1
+  if [[ -n "$PERLSCHOOL_DSN" ]]; then
+    local dsn="$PERLSCHOOL_DSN"
+    local val
+    val="$(printf '%s' "$dsn" | sed -n 's/.*dbname=\([^;]*\).*/\1/p')"
+    if [[ -n "$val" ]]; then
+      printf '%s' "$val"
+      return
+    fi
+  fi
+  return 1
+}
+
+# --- Validation --------------------------------------------------------------
+check_vars() {
+  local -a errors=()
+
+  local path
+  path="$(sqlite_db_path)" || errors+=("PERLSCHOOL_DB_PATH or PERLSCHOOL_DSN(dbname)")
+  if [[ -z "$path" || ! -f "$path" ]]; then
+    errors+=("sqlite_db_missing:${path:-<empty>}")
+  fi
+
+  if (( ${#errors[@]} )); then
+    echo "Missing/invalid environment variable(s): ${errors[*]}" >&2
+    exit 1
+  fi
+}
+
+# --- Command wrappers --------------------------------------------------------
+db_shell() {
+  local db; db="$(sqlite_db_path)" || return 1
+  command -v sqlite3 >/dev/null || { echo "sqlite3 CLI not found" >&2; return 127; }
+  sqlite3 "$db"
+}
+
+db_exec() {
+  # Reads SQL from stdin, executes in SQLite
+  local db; db="$(sqlite_db_path)" || return 1
+  command -v sqlite3 >/dev/null || { echo "sqlite3 CLI not found" >&2; return 127; }
+  sqlite3 -echo "$db"
+}
+
