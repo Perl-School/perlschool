@@ -105,9 +105,6 @@
       ></a>
 [%   END -%]
     </div>
-[%   IF feature.kit_list -%]
-    <script async data-uid="caf9a316cf" src="https://perl-school.kit.com/[% feature.kit_list %]/index.js"></script>
-[%   END -%]
 
     <h2 class="section-title mt-3">Extras</h2>
     <div class="action-row">
@@ -119,6 +116,11 @@
 [% END -%]
     </div>
 
+[%   IF feature.kit_list -%]
+    <div class="action-row">
+      <script async data-uid="caf9a316cf" src="https://perl-school.kit.com/[% feature.kit_list %]/index.js"></script>
+    </div>
+[%   END -%]
   </div>
 </div>
 
